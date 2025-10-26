@@ -1177,22 +1177,22 @@
             // --- END: MODIFIED ---
         });
 
-        if(registerForm) registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = registerEmailInput.value;
-            const username = registerUsernameInput.value; // 获取用户名
-            const password = registerForm.password.value;
-            const confirmPassword = registerForm['confirm-password'].value;
+        // if(registerForm) registerForm.addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     const email = registerEmailInput.value;
+        //     const username = registerUsernameInput.value; // 获取用户名
+        //     const password = registerForm.password.value;
+        //     const confirmPassword = registerForm['confirm-password'].value;
 
-            if (password !== confirmPassword) {
-                showAuthMessage('两次输入的密码不一致！', true);
-                return;
-            }
-            console.log("注册尝试:", email, "用户名:", username); // 更新日志
-            // 模拟API调用
-            showAuthMessage('注册成功！正在跳转至登录...', false);
-            setTimeout(() => showAuthView('login'), 1500);
-        });
+        //     if (password !== confirmPassword) {
+        //         showAuthMessage('两次输入的密码不一致！', true);
+        //         return;
+        //     }
+        //     console.log("注册尝试:", email, "用户名:", username); // 更新日志
+        //     // 模拟API调用
+        //     showAuthMessage('注册成功！正在跳转至登录...', false);
+        //     setTimeout(() => showAuthView('login'), 1500);
+        // });
 
         if(forgotPasswordForm) forgotPasswordForm.addEventListener('submit', (e) => {
             e.preventDefault();
