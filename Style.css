@@ -1,0 +1,141 @@
+        /* 导入 Inter 字体，以便中文和英文都显示良好 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Microsoft YaHei', 'SimHei', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* 自定义霓虹颜色 */
+        .text-neon-cyan { color: #00e5ff; } /* 亮青色 */
+        .text-neon-fuchsia { color: #ff28c6; } /* 亮品红色 */
+        .bg-neon-fuchsia { background-color: #ff28c6; }
+        .hover\:bg-neon-fuchsia:hover { background-color: #e024a8; }
+        .border-neon-cyan { border-color: #00e5ff; }
+        .focus\:ring-neon-fuchsia:focus { --tw-ring-color: #ff28c6; }
+        .focus\:border-neon-fuchsia:focus { border-color: #ff28c6; }
+
+
+        /* 英雄区背景和动画 - 采用深蓝/黑背景以突出霓虹效果 */
+        .hero-bg {
+            background: linear-gradient(135deg, #100f20 0%, #080816 100%); 
+        }
+
+        /* 导航栏背景 - 深色 */
+        .header-bg {
+             background-color: #1a1a2e;
+        }
+        
+        /* 特点区背景 - 深色以搭配整体风格 */
+        .features-bg {
+            background-color: #0d0c1e;
+        }
+
+        /* 卡片背景 - 深色 */
+        .card-bg {
+            background-color: #1a1a2e;
+        }
+
+        /* 确保文本在深色背景上可见 */
+        .text-default { color: #f3f4f6; } /* 浅灰色文本 */
+
+        /* --- 动态旋转运动选项样式 --- */
+        .rotator-container {
+            /* 3D透视效果 */
+            perspective: 800px;
+            /* 缩小 40%：280px -> 170px */
+            width: 170px; 
+            height: 170px; 
+        }
+
+        .rotator-cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* 启用3D变换 */
+            transform-style: preserve-3d;
+            /* 旋转动画：已调整为 30s，使其更慢 */
+            animation: rotate 30s infinite linear; 
+        }
+
+        /* 鼠标悬停时暂停动画 */
+        .rotator-cube:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .rotator-face {
+            position: absolute;
+            /* 缩小 40%：280px -> 170px */
+            width: 170px; 
+            height: 170px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            /* Neon style for faces */
+            background: rgba(0, 229, 255, 0.05); /* 透明青色背景 */
+            border: 1px solid rgba(0, 229, 255, 0.4);
+            color: #fff;
+            /* 缩小字体：1.5rem -> 1.0rem */
+            font-size: 1.0rem; 
+            font-weight: bold;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5), inset 0 0 5px rgba(0, 229, 255, 0.2);
+            backdrop-filter: blur(2px);
+        }
+
+        .rotator-face:hover {
+            border-color: #ff28c6;
+            box-shadow: 0 0 15px #ff28c6, inset 0 0 8px #ff28c6;
+            color: #ff28c6;
+        }
+
+        /* 6面体，每个面旋转60度，并向前推出 100px (根据新的尺寸调整) */
+        /* 原始 translateZ(160px) 缩小约 40% -> 100px */
+        .face-1 { transform: rotateY(0deg) translateZ(100px); }
+        .face-2 { transform: rotateY(60deg) translateZ(100px); }
+        .face-3 { transform: rotateY(120deg) translateZ(100px); }
+        .face-4 { transform: rotateY(180deg) translateZ(100px); }
+        .face-5 { transform: rotateY(240deg) translateZ(100px); }
+        .face-6 { transform: rotateY(300deg) translateZ(100px); }
+        /* --- 动态旋转运动选项样式结束 --- */
+
+        /* --- 身份验证模态框样式 --- */
+        .auth-modal-content {
+            background-color: #ffffff; /* Card BG -> White */
+            /* border: 1px solid #ff28c6; */ /* Neon Fuchsia border */
+            /* box-shadow: 0 0 25px rgba(255, 40, 198, 0.5); */
+        }
+
+        /* 表单输入框样式 */
+        .auth-input {
+            background-color: #ffffff; /* Features BG -> White */
+            border: 1px solid #d1d5db; /* Gray 700 -> Gray 300 */
+            color: #111827; /* Gray 100 -> Gray 900 */
+            transition: all 0.3s;
+        }
+
+        .auth-input:focus {
+            border-color: #4f46e5; /* Neon Cyan -> Indigo 500 */
+            --tw-ring-color: #4f46e5; /* Indigo 500 */
+            box-shadow: 0 0 0 1px #4f46e5;
+            outline: none;
+        }
+
+        /* 自定义提示框样式 */
+        #custom-alert {
+            background-color: rgba(13, 12, 30, 0.8); /* features-bg with opacity */
+            backdrop-filter: blur(5px);
+        }
+
+        #custom-alert-content {
+            background-color: #1a1a2e; /* card-bg */
+        }
