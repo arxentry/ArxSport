@@ -563,7 +563,7 @@
                         </div>
 
                         <div>
-                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                            <button type="submit" id="register-submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
                                 创建账户
                             </button>
                         </div>
@@ -641,10 +641,14 @@
     <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
+
+    const btn = document.querySelector(".register-submit");
+ 
+    // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyCJWGwgz6_-f73tDa0XhcEZNjVGgvAl5QA",
     authDomain: "authentication-ea1a6.firebaseapp.com",
@@ -656,6 +660,25 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  btn.addEventListener("click",function(Event){  
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+    event.preventDefault（）;
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log{"Account Create....."}
+  })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log{errorMessage}
+  });
+    
+  })
     </script>
 
 <!-- JavaScript -->
