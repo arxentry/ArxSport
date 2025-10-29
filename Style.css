@@ -1,4 +1,4 @@
-        /* 导入 Inter 字体，以便中文和英文都显示良好 */
+             /* 导入 Inter 字体，以便中文和英文都显示良好 */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         
         body {
@@ -17,24 +17,16 @@
 
 
         /* 英雄区背景和动画 - 采用深蓝/黑背景以突出霓虹效果 */
-        .hero-bg {
-            background: linear-gradient(135deg, #100f20 0%, #080816 100%); 
-        }
+        .hero-bg {background: linear-gradient(135deg, #100f20 0%, #080816 100%);}
 
         /* 导航栏背景 - 深色 */
-        .header-bg {
-             background-color: #1a1a2e;
-        }
+        .header-bg {background-color: #1a1a2e;}
         
         /* 特点区背景 - 深色以搭配整体风格 */
-        .features-bg {
-            background-color: #0d0c1e;
-        }
+        .features-bg {background-color: #0d0c1e;}
 
         /* 卡片背景 - 深色 */
-        .card-bg {
-            background-color: #1a1a2e;
-        }
+        .card-bg {background-color: #1a1a2e;}
 
         /* 确保文本在深色背景上可见 */
         .text-default { color: #f3f4f6; } /* 浅灰色文本 */
@@ -54,14 +46,12 @@
             position: relative;
             /* 启用3D变换 */
             transform-style: preserve-3d;
-            /* 旋转动画：已调整为 30s，使其更慢 */
-            animation: rotate 30s infinite linear; 
+            /* 旋转动画：已移除 CSS 动画，将由 JS 控制 */
+            /* animation: rotate 30s infinite linear; */ 
         }
 
-        /* 鼠标悬停时暂停动画 */
-        .rotator-cube:hover {
-            animation-play-state: paused;
-        }
+        /* 鼠标悬停时暂停动画 (已移除，由 JS 控制) */
+        /* .rotator-cube:hover {animation-play-state: paused;} */
 
         @keyframes rotate {
             from { transform: rotateY(0deg); }
@@ -139,3 +129,43 @@
         #custom-alert-content {
             background-color: #1a1a2e; /* card-bg */
         }
+
+        .Created{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            background-color: green;
+            margin-top: 26px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+         .Error{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            background-color: red;
+            margin-top: 26px;
+            line-height: 40px;
+            text-align: center;
+        }       
+
+        .Login{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            background-color: green;
+            margin-top: 26px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+         .LoginError{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            background-color: red;
+            margin-top: 26px;
+            line-height: 40px;
+            text-align: center;
+        }   
