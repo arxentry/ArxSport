@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARXENTRY - 运动科技平台</title>
+    <!-- 引入 Tailwind CSS CDN -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="/Public/Styles/style.css">
+</head>
+
+<body class="bg-gray-900"> <!-- 设置一个基础背景色 -->
+
+    <!-- 导航栏 (Navigation Bar) -->
+    <header class="sticky top-0 z-50 header-bg shadow-xl border-b border-cyan-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <img align="bottom" height="60" width="180" src="/Public/Photo/Company Logo/公司logo.png">
+                </div>
+
+                <!-- 桌面导航链接 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home"
+                        class="text-gray-200 hover:text-neon-cyan transition duration-150 font-medium">首页</a>
+                    <a href="#features"
+                        class="text-gray-200 hover:text-neon-cyan transition duration-150 font-medium">核心功能</a>
+                    <a href="#about"
+                        class="text-gray-200 hover:text-neon-cyan transition duration-150 font-medium">关于我们</a>
+                    <a href="#contact"
+                        class="text-gray-200 hover:text-neon-cyan transition duration-150 font-medium">联系方式</a>
+                </nav>
+
+                <!-- 登录/注册按钮 -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <!-- 更新：添加 ID 以便 JS 捕获点击事件 -->
+                    <h1 id="auth-status-msg" class="text-right px-50 py-0 text-sm text-gray-500">当前用户</h1>
+                    <!-- Auth Status -->
+                    <h1 id="auth-modal-button"
+                        class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-gray-900 bg-neon-fuchsia hover:bg-neon-fuchsia transition duration-150 transform hover:scale-[1.05]">
+                        登录/注册
+                    </h1>
+                </div>
+
+                <!-- 移动端菜单按钮 (Hamburger Icon) -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-200 hover:text-neon-cyan focus:outline-none">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单内容 (初始隐藏) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-900/90 backdrop-blur-sm">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home"
+                    class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-800 hover:text-neon-cyan">首页</a>
+                <a href="#features"
+                    class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-800 hover:text-neon-cyan">核心功能</a>
+                <a href="#about"
+                    class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-800 hover:text-neon-cyan">关于我们</a>
+                <a href="#contact"
+                    class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-800 hover:text-neon-cyan">联系方式</a>
+                <!-- 更新：添加 ID 以便 JS 捕获点击事件 -->
+                <button id="mobile-auth-button"
+                    class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-800 hover:text-neon-cyan">
+                    登录/注册
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 英雄区 (Hero Section) ... -->
+        <section id="home" class="hero-bg py-24 sm:py-32 lg:py-40 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 
+                        lg:grid lg:grid-cols-3 lg:gap-8 lg:items-center 
+                        text-center lg:text-left">
+
+                <!-- 1. 左侧：动态旋转运动选项 (占据一列) -->
+                <div class="lg:order-1 order-2 flex flex-col justify-center items-center h-full mb-12 lg:mb-0">
+                    <div class="rotator-container">
+                        <div class="rotator-cube">
+
+                            <!-- 注意：内部图标尺寸从 h-12 w-12 调整为 h-8 w-8 -->
+                            <div class="rotator-face face-1" data-sport="篮球">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="m8 12 1.4-1.4"></path>
+                                    <path d="m14.5 12.5-1.4 1.4"></path>
+                                    <path d="m11 15 1.4-1.4"></path>
+                                    <path d="m15 10.5-1.4 1.4"></path>
+                                </svg>
+                                篮球
+                            </div>
+
+                            <div class="rotator-face face-2" data-sport="羽毛球">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="17" r="3"></circle>
+                                    <path d="M12 14c-1 0-2-1-2-2v-4l2-4 2 4v4c0 1-1 2-2 2z"></path>
+                                    <path d="M10 8h4"></path>
+                                </svg>
+                                羽毛球
+                            </div>
+
+                            <div class="rotator-face face-3" data-sport="足球">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="m16 9-4-4-4 4"></path>
+                                    <path d="m12 5v14"></path>
+                                    <path d="m8 15 4 4 4-4"></path>
+                                </svg>
+                                足球
+                            </div>
+
+                            <div class="rotator-face face-4" data-sport="网球">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="8"></circle>
+                                    <path d="M12 4c-2.76 0-5 2.24-5 5s5 3 5 5"></path>
+                                    <path d="M12 20c2.76 0 5-2.24 5-5s-5-3-5-5"></path>
+                                </svg>
+                                网球
+                            </div>
+
+                            <div class="rotator-face face-5" data-sport="健身房">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="m15 15-4 5"></path>
+                                    <path d="m16 4h4v4"></path>
+                                    <path
+                                        d="m17 19.5-3.5-3.5c-1.45-1.45-2.5-3.5-2.5-5.5s1.25-3.75 2.5-5l1.5-1.5 5 5-1.5 1.5c-1.25 1.25-2.5 3.5-2.5 5.5s-1 4.05-2.5 5.5l-4 5">
+                                    </path>
+                                </svg>
+                                健身房
+                            </div>
+
+                            <div class="rotator-face face-6" data-sport="更多运动">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                更多运动
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- <p class="mt-4 text-sm text-gray-500 lg:hidden block">滑动查看更多运动</p> -->
+                    <p class="mt-8 text-lg text-gray-400 animate-pulse">
+                        滑动查看更多运动
+                    </p>
+                </div>
+
+                <!-- 2. 中间：现有 Hero 内容 (占据一列) -->
+                <div class="lg:order-2 order-1 lg:text-left text-center">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                        运动无界，<span class="text-neon-cyan">即刻预订</span>
+                    </h1>
+                    <p class="mt-4 text-lg sm:text-xl text-gray-400 max-w-3xl lg:max-w-none mx-auto">
+                        ARXENTRY 助您轻松预订最佳运动场地，发现附近的精彩活动。
+                    </p>
+                    <div
+                        class="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#features"
+                            class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-xl text-gray-900 bg-neon-fuchsia hover:bg-neon-fuchsia transition duration-300 transform hover:scale-105">
+                            立即开始预订
+                        </a>
+                        <a href="#about"
+                            class="inline-flex items-center justify-center px-6 py-3 border border-neon-cyan text-base font-bold rounded-lg shadow-xl text-neon-cyan bg-transparent hover:bg-neon-cyan/10 transition duration-300 transform hover:scale-105">
+                            发现附近活动
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. 右侧：预约人数与奖励面板 (占据一列) -->
+                <div class="lg:order-3 order-3 flex justify-center lg:justify-end mt-12 lg:mt-0">
+                    <div
+                        class="w-full max-w-xs card-bg p-6 rounded-xl shadow-lg border border-neon-cyan/50 text-center space-y-4 transition duration-500 hover:shadow-cyan-500/50">
+                        <p class="text-sm font-semibold text-neon-fuchsia uppercase">当前平台预约量</p>
+                        <div class="text-center">
+                            <span id="reservation-count"
+                                class="text-6xl font-extrabold text-white block leading-none">499</span>
+                            <span class="text-xl font-bold text-neon-cyan mt-1 block">次预约已达成</span>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-700/50">
+                            <h4 class="text-lg font-bold text-white mb-2">🎉 幸运儿活动 🎉</h4>
+                            <p id="prize-message" class="text-sm font-medium text-gray-400 transition duration-500">再有
+                                <span class="text-neon-cyan font-bold text-lg">1</span> 位预约用户，将送出豪华礼包！
+                            </p>
+                            <p id="prize-status"
+                                class="hidden text-sm font-bold text-yellow-300 bg-yellow-900/30 rounded-md p-2 mt-2 border border-yellow-700">
+                                恭喜！您将获得 ARXENTRY 豪华礼包！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 产品特点/服务区 (Features Section) ... -->
+        <section id="features" class="py-20 sm:py-32 features-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base text-neon-fuchsia font-semibold tracking-wide uppercase">核心优势</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                        我们提供的核心功能
+                    </p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+
+                    <!-- Feature 1: 预订场地 (Booking Venues) -->
+                    <div
+                        class="card-bg p-8 rounded-xl shadow-lg border border-gray-700 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <div
+                            class="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-900/50 text-neon-cyan border border-neon-cyan/50">
+                            <!-- Calendar Check Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                                <line x1="16" x2="16" y1="2" y2="6"></line>
+                                <line x1="8" x2="8" y1="2" y2="6"></line>
+                                <line x1="3" x2="21" y1="10" y2="10"></line>
+                                <path d="m9 16 2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-bold text-white">场地快速预订</h3>
+                        <p class="mt-3 text-base text-gray-400">
+                            实时查看数千家运动场馆的空闲时段，一键锁定，即刻拥有专属运动空间。
+                        </p>
+                    </div>
+
+                    <!-- Feature 2: 地点选择 (Location Selection) -->
+                    <div
+                        class="card-bg p-8 rounded-xl shadow-lg border border-gray-700 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <div
+                            class="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-900/50 text-neon-cyan border border-neon-cyan/50">
+                            <!-- Map Pin Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-bold text-white">智能地点选择</h3>
+                        <p class="mt-3 text-base text-gray-400">
+                            基于地理位置和偏好，为您推荐最近、最匹配的运动场地，省时省力。
+                        </p>
+                    </div>
+
+                    <!-- Feature 3: 活动 (Events/Activities) -->
+                    <div
+                        class="card-bg p-8 rounded-xl shadow-lg border border-gray-700 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <div
+                            class="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-900/50 text-neon-cyan border border-neon-cyan/50">
+                            <!-- Users Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-bold text-white">精彩运动活动</h3>
+                        <p class="mt-3 text-base text-gray-400">
+                            无论是组队约战还是单人报名，轻松创建和加入您感兴趣的运动社群和活动。
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于我们 (About Section) ... -->
+        <section id="about" class="py-20 sm:py-32 features-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:text-center">
+                    <h2 class="text-base text-neon-fuchsia font-semibold tracking-wide uppercase">公司愿景</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                        关于 ARXENTRY
+                    </p>
+                </div>
+
+                <div class="mt-10 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+                    <div>
+                        <p class="text-lg text-gray-400">
+                            ARXENTRY 成立于 2018 年，致力于通过科技力量连接运动爱好者与优质场馆。我们的目标是打造一个高效、便捷、充满活力的运动社区，让运动成为生活的一部分。
+                        </p>
+                        <p class="mt-4 text-lg text-gray-400">
+                            我们相信，每个人都值得拥有更简单、更愉快的运动体验。通过创新的预订系统和社交功能，我们帮助用户轻松实现运动目标，享受团队协作和挑战的乐趣。
+                        </p>
+                        <div class="mt-6">
+                            <a href="#contact"
+                                class="text-base font-medium text-neon-fuchsia hover:text-neon-fuchsia/80 transition duration-150">
+                                了解更多关于我们的故事 →
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 占位图或公司插画 -->
+                    <div class="mt-10 lg:mt-0">
+                        <div class="bg-gray-800 p-8 rounded-xl shadow-inner text-center border border-gray-700">
+                            <h4 class="text-xl font-bold text-white">科技驱动运动</h4>
+                            <p class="mt-2 text-gray-400">
+                                用技术连接每一个运动时刻
+                            </p>
+                            <!-- 简单的SVG图形占位 -->
+                            <svg class="mx-auto mt-4 w-full max-w-sm h-48 text-neon-cyan" viewBox="0 0 200 100"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="10" width="180" height="80" rx="10" stroke="currentColor"
+                                    stroke-width="3" opacity="0.5"></rect>
+                                <circle cx="100" cy="50" r="10" fill="currentColor"></circle>
+                                <path d="M30 70 C 60 40, 140 40, 170 70" stroke="currentColor" stroke-width="3"
+                                    fill="none"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我们 (Contact Section) ... -->
+        <section id="contact" class="py-20 hero-bg text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold">与我们联系</h2>
+                <p class="mt-4 text-lg text-gray-400">
+                    成为我们的合作伙伴，或了解如何入驻场馆平台。
+                </p>
+                <div class="mt-8">
+                    <a href="mailto:info@example.com"
+                        class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-gray-900 bg-neon-cyan hover:bg-neon-cyan/80 transition duration-150 transform hover:scale-105">
+                        发送邮件给我们
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 (Footer) ... -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- 公司信息 -->
+                <div>
+                    <h3 class="text-sm font-semibold tracking-wider text-neon-fuchsia uppercase">ARXENTRY</h3>
+                    <ul role="list" class="mt-4 space-y-4">
+                        <li><a href="#about" class="text-base text-gray-300 hover:text-neon-cyan">关于我们</a></li>
+                        <li><a href="#features" class="text-base text-gray-300 hover:text-neon-cyan">核心功能</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-neon-cyan">场馆入驻</a></li>
+                    </ul>
+                </div>
+                <!-- 快速链接 -->
+                <div>
+                    <h3 class="text-sm font-semibold tracking-wider text-neon-fuchsia uppercase">支持</h3>
+                    <ul role="list" class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-neon-cyan">帮助中心</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-neon-cyan">隐私政策</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-neon-cyan">服务条款</a></li>
+                    </ul>
+                </div>
+                <!-- 联系方式 -->
+                <div class="col-span-2 md:col-span-1">
+                    <h3 class="text-sm font-semibold tracking-wider text-neon-fuchsia uppercase">联系我们</h3>
+                    <p class="mt-4 text-base text-gray-300">电话: (010) 1234-5678</p>
+                    <p class="text-base text-gray-300">邮箱: info@arxentry.com</p>
+                    <address class="mt-2 text-base text-gray-300 not-italic">地址: 某市运动科技园B座202室</address>
+                </div>
+            </div>
+
+            <!-- 版权信息 -->
+            <div class="mt-8 border-t border-gray-700 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    © 2025 ARXENTRY. 保留所有权利。
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- 运动预约模态框 (Booking Modal) ... -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.8);">
+
+        <!-- Modal Content Container -->
+        <div class="bg-gray-900 border border-neon-cyan/50 rounded-xl shadow-2xl w-full max-w-4xl h-[90vh] md:h-auto overflow-y-auto transform scale-95 opacity-0 transition-all duration-300"
+            id="modal-content">
+
+            <!-- Modal Header -->
+            <!-- START: FIX - Corrected IDs and styles for Booking Modal Header -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-700">
+                <h2 id="modal-sport-title" class="text-2xl font-bold text-white">预约</h2>
+                <button id="close-modal-button" class="text-gray-400 hover:text-neon-cyan transition duration-150">
+                    <!-- END: FIX -->
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 md:p-8 space-y-8">
+
+                <!-- 1. 地点选择 (Location Selection) -->
+                <section class="space-y-4">
+                    <h3 class="text-xl font-semibold text-white flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-neon-fuchsia"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        选择地点
+                    </h3>
+                    <div class="relative">
+                        <input type="text" placeholder="输入地点或场馆名称..."
+                            class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan/50 transition">
+                        <select
+                            class="mt-2 w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan/50 transition appearance-none">
+                            <option value="" selected="selected">选择附近的场馆</option>
+                            <option value="venue1">星辰运动中心 (2.5km)</option>
+                            <option value="venue2">城市花园球场 (4.1km)</option>
+                            <option value="venue3">未来科技健身房 (1.8km)</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!-- 2. 预约时间分段 (Time Slot Selection) -->
+                <section class="space-y-4">
+                    <h3 class="text-xl font-semibold text-white flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-neon-fuchsia"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                            <line x1="16" x2="16" y1="2" y2="6"></line>
+                            <line x1="8" x2="8" y1="2" y2="6"></line>
+                            <line x1="3" x2="21" y1="10" y2="10"></line>
+                        </svg>
+                        选择日期和时段
+                    </h3>
+
+                    <!-- 日期选择器 (Days) -->
+                    <div class="flex space-x-2 overflow-x-auto pb-2">
+                        <!-- 动态生成日期，此处仅为示例 -->
+                        <button
+                            class="date-btn flex-shrink-0 p-3 bg-gray-700 text-gray-300 rounded-xl hover:bg-neon-cyan hover:text-gray-900 transition duration-150 active-date"
+                            data-date="today">今天 (周二)</button>
+                        <button
+                            class="date-btn flex-shrink-0 p-3 bg-gray-800 text-gray-400 rounded-xl hover:bg-neon-cyan hover:text-gray-900 transition duration-150"
+                            data-date="tomorrow">明天 (周三)</button>
+                        <button
+                            class="date-btn flex-shrink-0 p-3 bg-gray-800 text-gray-400 rounded-xl hover:bg-neon-cyan hover:text-gray-900 transition duration-150"
+                            data-date="day3">周四</button>
+                        <button
+                            class="date-btn flex-shrink-0 p-3 bg-gray-800 text-gray-400 rounded-xl hover:bg-neon-cyan hover:text-gray-900 transition duration-150"
+                            data-date="day4">周五</button>
+                        <button
+                            class="date-btn flex-shrink-0 p-3 bg-gray-800 text-gray-400 rounded-xl hover:bg-neon-cyan hover:text-gray-900 transition duration-150"
+                            data-date="day5">周六</button>
+                    </div>
+
+                    <!-- 时间段选择器 (Time Slots) -->
+                    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 pt-2">
+                        <!-- 示例时段 - 绿色表示可用，灰色表示已满，霓虹色表示选中 -->
+                        <button
+                            class="time-slot-btn p-3 bg-green-700 text-white rounded-lg opacity-80 hover:opacity-100 transition duration-150 font-medium"
+                            data-time="08:00">08:00 - 09:00</button>
+                        <button
+                            class="time-slot-btn p-3 bg-green-700 text-white rounded-lg opacity-80 hover:opacity-100 transition duration-150 font-medium"
+                            data-time="09:00">09:00 - 10:00</button>
+                        <button
+                            class="time-slot-btn p-3 bg-gray-600 text-gray-400 rounded-lg cursor-not-allowed font-medium">10:00
+                            - 11:00 (满)</button>
+                        <button
+                            class="time-slot-btn p-3 bg-green-700 text-white rounded-lg opacity-80 hover:opacity-100 transition duration-150 font-medium"
+                            data-time="11:00">11:00 - 12:00</button>
+                        <button
+                            class="time-slot-btn p-3 bg-green-700 text-white rounded-lg opacity-80 hover:opacity-100 transition duration-150 font-medium"
+                            data-time="12:00">12:00 - 13:00</button>
+                        <button
+                            class="time-slot-btn p-3 bg-green-700 text-white rounded-lg opacity-80 hover:opacity-100 transition duration-150 font-medium"
+                            data-time="13:00">13:00 - 14:00</button>
+                        <button
+                            class="time-slot-btn p-3 bg-green-700 text-white rounded-lg opacity-80 hover:opacity-100 transition duration-150 font-medium"
+                            data-time="14:00">14:00 - 15:00</button>
+                        <button
+                            class="time-slot-btn p-3 bg-gray-600 text-gray-400 rounded-lg cursor-not-allowed font-medium">15:00
+                            - 16:00 (满)</button>
+                        <button
+                            class="time-slot-btn p-3 bg-green-700 text-white rounded-lg opacity-80 hover:opacity-100 transition duration-150 font-medium"
+                            data-time="16:00">16:00 - 17:00</button>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">请选择一个可用的时段（绿色方块）。</p>
+                </section>
+            </div>
+
+            <!-- Modal Footer (Action) -->
+            <div class="p-6 md:p-8 border-t border-gray-700 flex justify-end">
+                <button id="confirm-booking-button"
+                    class="px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-xl text-gray-900 bg-neon-fuchsia hover:bg-neon-fuchsia transition duration-300 transform hover:scale-105">
+                    确认预约
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- START: 新增身份验证模态框 (Auth Modal) -->
+    <div id="auth-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.8);">
+
+        <!-- Modal Content Container -->
+        <div id="auth-modal-content"
+            class="auth-modal-content rounded-xl shadow-2xl w-full max-w-md transform scale-95 opacity-0 transition-all duration-300">
+
+            <!-- Modal Header -->
+            <!-- START: FIX - Corrected styles for Auth Modal Header to match white background -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h2 id="auth-modal-title" class="text-2xl font-bold text-gray-900">欢迎回来</h2>
+                <button id="close-auth-modal-button" class="text-gray-400 hover:text-gray-600 transition duration-150">
+                    <!-- END: FIX -->
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 md:p-8">
+
+                <!-- 登录视图 (默认) -->
+                <div id="login-view">
+                    <form id="login-form" class="space-y-7">
+                        <!-- START: 新增登录方式切换Tabs -->
+                        <div class="flex border-b border-gray-200">
+                            <button type="button" id="login-tab-email"
+                                class="login-tab-btn flex-1 py-2 px-4 text-center font-medium border-b-2 border-indigo-500 text-indigo-600">
+                                邮箱登录
+                            </button>
+                            <button type="button" id="login-tab-phone"
+                                class="login-tab-btn flex-1 py-2 px-4 text-center font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                手机号登录
+                            </button>
+                            <button type="button" id="login-tab-username"
+                                class="login-tab-btn flex-1 py-2 px-4 text-center font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                用户名登录
+                            </button>
+                        </div>
+                        <!-- END: 新增登录方式切换Tabs -->
+
+                        <div id="login-input-email">
+                            <label for="login-email" class="block text-sm font-medium text-gray-700">邮箱地址</label>
+                            <div class="mt-1">
+                                <input id="login-email" name="email" type="email" autocomplete="email"
+                                    placeholder="Example@Gmail.com" required
+                                    class="auth-input block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                        </div>
+
+                        <div id="login-input-phone" class="hidden">
+                            <label for="login-phone" class="block text-sm font-medium text-gray-700">手机号码</label>
+                            <div class="mt-1">
+                                <input id="login-phone" name="phone" type="tel" autocomplete="tel"
+                                    placeholder="Example@Gmail.com"
+                                    class="auth-input block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                        </div>
+
+                        <div id="login-input-username" class="hidden">
+                            <label for="login-username" class="block text-sm font-medium text-gray-700">用户名</label>
+                            <div class="mt-1">
+                                <input id="login-username" name="username" type="text" autocomplete="username"
+                                    placeholder="Admin"
+                                    class="auth-input block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="login-password" class="block text-sm font-medium text-gray-700">密码</label>
+                            <div class="mt-1">
+                                <input id="login-password" name="password" type="password"
+                                    autocomplete="current-password" placeholder="******" required
+                                    class="auth-input block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm">
+                                <a href="#" id="show-forgot-password-view"
+                                    class="font-medium text-indigo-600 hover:text-indigo-500">
+                                    忘记密码？
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="submit" id="L-btn"
+                                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                                登录
+                            </button>
+                        </div>
+                    </form>
+                    <p class="mt-6 text-center text-sm text-gray-600">
+                        还没有账户？
+                        <a href="#" id="show-register-view" class="font-medium text-indigo-600 hover:text-indigo-500">
+                            立即注册
+                        </a>
+                    </p>
+
+                    <div class="L_message_box"></div>
+                </div>
+
+                <!-- 注册视图 (隐藏) -->
+                <div id="register-view" class="hidden">
+                    <form id="register-form" class="space-y-6">
+                        <div>
+                            <label for="register-email" class="block text-sm font-medium text-gray-700">邮箱地址</label>
+                            <input id="register-email" name="email" type="email" autocomplete="email" required
+                                class="auth-input mt-1 block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+
+                        <!-- START: 新增用户名输入框 -->
+                        <div>
+                            <label for="register-username" class="block text-sm font-medium text-gray-700">用户名</label>
+                            <input id="register-username" name="username" type="text" autocomplete="username" required
+                                class="auth-input mt-1 block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <!-- END: 新增用户名输入框 -->
+
+                        <div>
+                            <label for="register-password" class="block text-sm font-medium text-gray-700">设置密码</label>
+                            <input id="register-password" name="password" type="password" autocomplete="new-password"
+                                required
+                                class="auth-input mt-1 block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+
+                        <div>
+                            <label for="register-confirm-password"
+                                class="block text-sm font-medium text-gray-700">确认密码</label>
+                            <input id="register-confirm-password" name="confirm-password" type="password"
+                                autocomplete="new-password" required
+                                class="auth-input mt-1 block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+
+                        <div>
+                            <button type="submit" id="R-btn"
+                                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                                创建账户
+                            </button>
+                        </div>
+
+                        <div class="R_message_box"></div>
+
+
+                    </form>
+                    <p class="mt-6 text-center text-sm text-gray-600">
+                        已有账户？
+                        <a href="#" id="show-login-view" class="font-medium text-indigo-600 hover:text-indigo-500">
+                            返回登录
+                        </a>
+                    </p>
+                </div>
+
+                <!-- 忘记密码视图 (隐藏) -->
+                <div id="forgot-password-view" class="hidden">
+                    <form id="forgot-password-form" class="space-y-6">
+                        <p class="text-gray-700">请输入您的账户信息，我们将发送重置链接。</p>
+
+                        <!-- START: 新增忘记密码方式切换Tabs -->
+                        <div class="flex border-b border-gray-200">
+                            <button type="button" id="forgot-tab-email"
+                                class="forgot-tab-btn flex-1 py-2 px-4 text-center font-medium border-b-2 border-indigo-500 text-indigo-600">
+                                通过邮箱
+                            </button>
+                            <button type="button" id="forgot-tab-phone"
+                                class="forgot-tab-btn flex-1 py-2 px-4 text-center font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                通过手机号
+                            </button>
+                        </div>
+                        <!-- END: 新增忘记密码方式切换Tabs -->
+
+                        <div id="forgot-input-email">
+                            <label for="forgot-email" class="block text-sm font-medium text-gray-700">邮箱地址</label>
+                            <input id="forgot-email" name="email" type="email" autocomplete="email" required
+                                class="auth-input mt-1 block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+
+                        <div id="forgot-input-phone" class="hidden">
+                            <label for="forgot-phone" class="block text-sm font-medium text-gray-700">手机号码</label>
+                            <input id="forgot-phone" name="phone" type="tel" autocomplete="tel"
+                                class="auth-input mt-1 block w-full rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+
+                        <div>
+                            <button type="submit"
+                                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                                发送重置链接
+                            </button>
+                        </div>
+                    </form>
+                    <p class="mt-6 text-center text-sm text-gray-600">
+                        记起密码了？
+                        <a href="#" id="show-login-view-from-forgot"
+                            class="font-medium text-indigo-600 hover:text-indigo-500">
+                            返回登录
+                        </a>
+                    </p>
+                </div>
+
+                <!-- 身份验证消息提示栏 -->
+                <div id="auth-message" class="hidden mt-4 p-3 rounded-lg text-center text-sm font-medium"></div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: 新增身份验证模态框 -->
+
+    <!-- START: 新增自定义提示框 (Custom Alert) -->
+    <div id="custom-alert"
+        class="fixed inset-0 z-[110] hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div id="custom-alert-content"
+            class="w-full max-w-sm rounded-xl shadow-2xl border border-neon-cyan/50 p-6 text-center transform scale-95 transition-all duration-300">
+            <h3 id="custom-alert-title" class="text-xl font-bold text-neon-cyan mb-4">提示</h3>
+            <p id="custom-alert-message" class="text-gray-200 mb-6"></p>
+            <button id="custom-alert-close"
+                class="px-6 py-2 bg-neon-fuchsia text-gray-900 font-bold rounded-lg shadow-lg hover:bg-neon-fuchsia transition duration-300 transform hover:scale-105">
+                关闭
+            </button>
+        </div>
+    </div>
+
+    <!-- END: 新增自定义提示框 -->
+    <script type="module" src="./Public/JavaScript/Reg_Login.js"></script>
+    <script type="module" src="./Public/JavaScript/index.js"></script>
+
+</body>
+
+</html>
